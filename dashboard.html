@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gérez vos produits, commandes et profil sur votre espace personnel StockEasy.">
+    <title>Mon Espace - StockEasy</title>
+    <link href="input.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-light dark:bg-dark text-dark dark:text-light min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <img src="assets/images/logo.svg" alt="StockEasy Logo" class="h-10">
+                    <span class="font-bold text-xl text-primary">StockEasy</span>
+                </div>
+                
+                <!-- Navigation Desktop -->
+                <nav class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Accueil</a>
+                    <a href="produits.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Produits</a>
+                    <a href="vendre.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Vendre</a>
+                    <a href="recherche.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Recherche</a>
+                    <a href="contact.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Contact</a>
+                </nav>
+                
+                <!-- User Actions -->
+                <div class="flex items-center space-x-4">
+                    <button id="darkModeToggle" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    <a href="dashboard.html" class="text-primary dark:text-primary">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <button class="md:hidden text-gray-700 dark:text-gray-200" id="mobileMenuButton">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden hidden mt-4 pb-4">
+                <nav class="flex flex-col space-y-3">
+                    <a href="index.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Accueil</a>
+                    <a href="produits.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Produits</a>
+                    <a href="vendre.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Vendre</a>
+                    <a href="recherche.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Recherche</a>
+                    <a href="contact.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="bg-gray-100 dark:bg-gray-800 py-8">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold">Mon Espace</h1>
+            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mt-2">
+                <a href="index.html" class="hover:text-primary">Accueil</a>
+                <span class="mx-2">/</span>
+                <span>Mon Espace</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Content -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Sidebar -->
+                <div class="lg:w-1/4">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden sticky top-32">
+                        <!-- User Profile Summary -->
+                        <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex items-center space-x-4">
+                            <img src="assets/images/user-avatar.jpg" alt="Photo de profil" class="w-16 h-16 rounded-full object-cover">
+                            <div>
+                                <h3 class="font-semibold text-lg">Amadou Diallo</h3>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">amadou.diallo@example.com</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Navigation -->
+                        <nav class="p-4">
+                            <ul class="space-y-2">
+                                <li>
+                                    <a href="#dashboard" class="flex items-center p-3 rounded-lg bg-primary bg-opacity-10 text-primary">
+                                        <i class="fas fa-tachometer-alt w-6"></i>
+                                        <span>Tableau de bord</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#products" class="flex items-center p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                        <i class="fas fa-box w-6"></i>
+                                        <span>Mes produits</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#orders" class="flex items-center p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                        <i class="fas fa-shopping-bag w-6"></i>
+                                        <span>Mes commandes</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#messages" class="flex items-center p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                        <i class="fas fa-envelope w-6"></i>
+                                        <span>Messages</span>
+                                        <span class="ml-auto bg-primary text-white text-xs px-2 py-1 rounded-full">3</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#profile" class="flex items-center p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                        <i class="fas fa-user-edit w-6"></i>
+                                        <span>Modifier profil</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#settings" class="flex items-center p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                                        <i class="fas fa-cog w-6"></i>
+                                        <span>Paramètres</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition text-red-500">
+                                        <i class="fas fa-sign-out-alt w-6"></i>
+                                        <span>Déconnexion</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="lg:w-3/4">
+                    <!-- Dashboard Overview -->
+                    <div id="dashboard" class="mb-8">
+                        <h2 class="text-2xl font-bold mb-6">Tableau de bord</h2>
+                        
+                        <!-- Stats Cards -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                            <!-- Products Stats -->
+                            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm">Produits</p>
+                                        <h3 class="text-2xl font-bold">12</h3>
+                                    </div>
+                                    <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-full">
+                                        <i class="fas fa-box text-blue-500 dark:text-blue-300"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex items-center text-sm">
+                                    <span class="text-green-500 flex items-center">
+                                        <i class="fas fa-arrow-up mr-1"></i> 8%
+                                    </span>
+                                    <span class="text-gray-500 dark:text-gray-400 ml-2">Depuis le mois dernier</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Sales Stats -->
+                            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm">Ventes</p>
+                                        <h3 class="text-2xl font-bold">28</h3>
+                                    </div>
+                                    <div class="bg-green-100 dark:bg-green-900 p-3 rounded-full">
+                                        <i class="fas fa-shopping-cart text-green-500 dark:text-green-300"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex items-center text-sm">
+                                    <span class="text-green-500 flex items-center">
+                                        <i class="fas fa-arrow-up mr-1"></i> 12%
+                                    </span>
+                                    <span class="text-gray-500 dark:text-gray-400 ml-2">Depuis le mois dernier</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Revenue Stats -->
+                            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm">Revenus</p>
+                                        <h3 class="text-2xl font-bold">485 €</h3>
+                                    </div>
+                                    <div class="bg-purple-100 dark:bg-purple-900 p-3 rounded-full">
+                                        <i class="fas fa-money-bill-wave text-purple-500 dark:text-purple-300"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex items-center text-sm">
+                                    <span class="text-green-500 flex items-center">
+                                        <i class="fas fa-arrow-up mr-1"></i> 15%
+                                    </span>
+                                    <span class="text-gray-500 dark:text-gray-400 ml-2">Depuis le mois dernier</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Views Stats -->
+                            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm">Vues</p>
+                                        <h3 class="text-2xl font-bold">1,245</h3>
+                                    </div>
+                                    <div class="bg-yellow-100 dark:bg-yellow-900 p-3 rounded-full">
+                                        <i class="fas fa-eye text-yellow-500 dark:text-yellow-300"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex items-center text-sm">
+                                    <span class="text-green-500 flex items-center">
+                                        <i class="fas fa-arrow-up mr-1"></i> 24%
+                                    </span>
+                                    <span class="text-gray-500 dark:text-gray-400 ml-2">Depuis le mois dernier</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent Activity -->
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+                            <h3 class="text-xl font-semibold mb-4">Activité récente</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 dark:bg-blue-900 p-2 rounded-full mr-4">
+                                        <i class="fas fa-shopping-bag text-blue-500 dark:text-blue-300"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Nouvelle commande reçue</p>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm">Commande #1234 - Beurre de Karité (2x)</p>
+                                        <p class="text-gray-500 dark:text-gray-400 text-xs mt-1">Il y a 2 heures</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-green-100 dark:bg-green-900 p-2 rounded-full mr-4">
+                                        <i class="fas fa-comment text-green-500 dark:text-green-300"></i>
+                                    </div>
+                                    <p class="font-medium">Nouveau message reçu</p>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm">Marie Diallo a une question sur votre produit</p>
+                                        <p class="text-gray-500 dark:text-gray-400 text-xs mt-1">Il y a 5 heures</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-purple-100 dark:bg-purple-900 p-2 rounded-full mr-4">
+                                        <i class="fas fa-star text-purple-500 dark:text-purple-300"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Nouvel avis reçu</p>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm">Ibrahim Camara a laissé un avis 5 étoiles sur votre Miel naturel</p>
+                                        <p class="text-gray-500 dark:text-gray-400 text-xs mt-1">Il y a 1 jour</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-yellow-100 dark:bg-yellow-900 p-2 rounded-full mr-4">
+                                        <i class="fas fa-box text-yellow-500 dark:text-yellow-300"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Nouveau produit ajouté</p>
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm">Vous avez ajouté "Tissu traditionnel" à votre boutique</p>
+                                        <p class="text-gray-500 dark:text-gray-400 text-xs mt-1">Il y a 2 jours</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <a href="#" class="text-primary hover:underline text-sm">Voir toutes les activités</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Sales Chart -->
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Ventes mensuelles</h3>
+                                <div class="flex space-x-2">
+                                    <button class="px-3 py-1 text-sm bg-primary text-white rounded-md">Mois</button>
+                                    <button class="px-3 py-1 text-sm bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md">Année</button>
+                                </div>
+                            </div>
+                            <div class="h-80 w-full">
+                                <!-- Placeholder for chart -->
+                                <div class="w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-lg">
+                                    <p class="text-gray-500 dark:text-gray-400">Graphique des ventes mensuelles</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Products Section -->
+                    <div id="products" class="mb-8 hidden">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-2xl font-bold">Mes produits</h2>
+                            <a href="vendre.html" class="btn-primary">
+                                <i class="fas fa-plus mr-2"></i> Ajouter un produit
+                            </a>
+                        </div>
+                        
+                        <!-- Products Table -->
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead class="bg-gray-50 dark:bg-gray-700">
+                                        <tr>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Produit</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Catégorie</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Prix</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Stock</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Vues</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Statut</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="h-10 w-10 flex-shrink-0">
+                                                        <img class="h-10 w-10 rounded-md object-cover" src="assets/images/products/beurre-karite.jpg" alt="Beurre de Karité">
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium">Beurre de Karité</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">Beauté</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium">15,99 €</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">24</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">342</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                                    Actif
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                <div class="flex space-x-2">
+                                                    <button class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="h-10 w-10 flex-shrink-0">
+                                                        <img class="h-10 w-10 rounded-md object-cover" src="assets/images/products/miel.jpg" alt="Miel naturel">
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium">Miel naturel</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">Alimentation</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium">12,50 €</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">18</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">287</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                                    Actif
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                <div class="flex space-x-2">
+                                                    <button class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="h-10 w-10 flex-shrink-0">
+                                                        <img class="h-10 w-10 rounded-md object-cover" src="assets/images/products/tissu.jpg" alt="Tissu traditionnel">
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium">Tissu traditionnel</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">Artisanat</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium">25,00 €</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">7</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">156</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                                                    Stock faible
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                <div class="flex space-x-2">
+                                                    <button class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Orders Section -->
+                    <div id="orders" class="mb-8 hidden">
+                        <h2 class="text-2xl font-bold mb-6">Mes commandes</h2>
+                        
+                        <!-- Orders Table -->
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead class="bg-gray-50 dark:bg-gray-700">
+                                        <tr>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Commande</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Date</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Client</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Total</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Statut</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium">#1234</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">19/03/2023</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">19/03/2023</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm">Marie Diallo</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium">31,98 €</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                                    Livré
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                <button class="text-primary hover:text-primary-dark">
+                                                    Détails
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium">#1233</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">15/03/2023</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm">Ibrahim Camara</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium">12,50 €</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                                    Expédié
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                <button class="text-primary hover:text-primary-dark">
+                                                    Détails
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium">#1232</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">10/03/2023</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm">Fatou Sylla</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium">25,00 €</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                                                    En préparation
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                <button class="text-primary hover:text-primary-dark">
+                                                    Détails
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Messages Section -->
+                    <div id="messages" class="mb-8 hidden">
+                        <h2 class="text-2xl font-bold mb-6">Messages</h2>
+                        
+                        <!-- Messages List -->
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                            <div class="divide-y divide-gray-200 dark:divide-gray-700">
+                                <!-- Message 1 -->
+                                <div class="p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition cursor-pointer">
+                                    <div class="flex justify-between items-start">
+                                        <div class="flex items-start">
+                                            <img src="assets/images/testimonials/user1.jpg" alt="Marie Diallo" class="w-10 h-10 rounded-full mr-4">
+                                            <div>
+                                                <h4 class="font-medium">Marie Diallo</h4>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">À propos de: Beurre de Karité</p>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="inline-block px-2 py-1 bg-primary text-white text-xs rounded-full">Nouveau</span>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Il y a 5 heures</p>
+                                        </div>
+                                    </div>
+                                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Bonjour, je voudrais savoir si votre beurre de karité est adapté pour les peaux sensibles ? Merci d'avance pour votre réponse.</p>
+                                </div>
+                                
+                                <!-- Message 2 -->
+                                <div class="p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition cursor-pointer">
+                                    <div class="flex justify-between items-start">
+                                        <div class="flex items-start">
+                                            <img src="assets/images/testimonials/user2.jpg" alt="Ibrahim Camara" class="w-10 h-10 rounded-full mr-4">
+                                            <div>
+                                                <h4 class="font-medium">Ibrahim Camara</h4>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">À propos de: Miel naturel</p>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="inline-block px-2 py-1 bg-primary text-white text-xs rounded-full">Nouveau</span>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Il y a 1 jour</p>
+                                        </div>
+                                    </div>
+                                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Le miel est excellent ! Je voudrais savoir si vous proposez des remises pour les achats en grande quantité ? J'aimerais en commander plusieurs pots.</p>
+                                </div>
+                                
+                                <!-- Message 3 -->
+                                <div class="p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition cursor-pointer">
+                                    <div class="flex justify-between items-start">
+                                        <div class="flex items-start">
+                                            <img src="assets/images/testimonials/user3.jpg" alt="Fatou Sylla" class="w-10 h-10 rounded-full mr-4">
+                                            <div>
+                                                <h4 class="font-medium">Fatou Sylla</h4>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">À propos de: Tissu traditionnel</p>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="inline-block px-2 py-1 bg-primary text-white text-xs rounded-full">Nouveau</span>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Il y a 2 jours</p>
+                                        </div>
+                                    </div>
+                                    <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm">Bonjour, j'ai bien reçu ma commande de tissu traditionnel. Les motifs sont magnifiques ! Proposez-vous d'autres couleurs pour ce modèle ?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Profile Section -->
+                    <div id="profile" class="mb-8 hidden">
+                        <h2 class="text-2xl font-bold mb-6">Modifier mon profil</h2>
+                        
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                            <form>
+                                <!-- Profile Picture -->
+                                <div class="mb-6 text-center">
+                                    <div class="relative inline-block">
+                                        <img src="assets/images/user-avatar.jpg" alt="Photo de profil" class="w-32 h-32 rounded-full object-cover mx-auto">
+                                        <label for="profile-picture" class="absolute bottom-0 right-0 bg-primary text-white p-2 rounded-full cursor-pointer">
+                                            <i class="fas fa-camera"></i>
+                                            <input type="file" id="profile-picture" class="hidden">
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Personal Information -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                    <div>
+                                        <label for="first-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Prénom</label>
+                                        <input type="text" id="first-name" name="first-name" value="Amadou" class="input-field">
+                                    </div>
+                                    <div>
+                                        <label for="last-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nom</label>
+                                        <input type="text" id="last-name" name="last-name" value="Diallo" class="input-field">
+                                    </div>
+                                    <div>
+                                        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                                        <input type="email" id="email" name="email" value="amadou.diallo@example.com" class="input-field">
+                                    </div>
+                                    <div>
+                                        <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Téléphone</label>
+                                        <input type="tel" id="phone" name="phone" value="+224 12 345 6789" class="input-field">
+                                    </div>
+                                </div>
+                                
+                                <!-- Address Information -->
+                                <div class="mb-6">
+                                    <h3 class="text-lg font-medium mb-3">Adresse</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="md:col-span-2">
+                                            <label for="street" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Rue</label>
+                                            <input type="text" id="street" name="street" value="123 Rue du Commerce" class="input-field">
+                                        </div>
+                                        <div>
+                                            <label for="city" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Ville</label>
+                                            <input type="text" id="city" name="city" value="Conakry" class="input-field">
+                                        </div>
+                                        <div>
+                                            <label for="region" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Région</label>
+                                            <select id="region" name="region" class="input-field">
+                                                <option value="conakry">Conakry</option>
+                                                <option value="kindia">Kindia</option>
+                                                <option value="kankan">Kankan</option>
+                                                <option value="labe">Labé</option>
+                                                <option value="mamou">Mamou</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Password Change -->
+                                <div class="mb-6">
+                                    <h3 class="text-lg font-medium mb-3">Changer le mot de passe</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label for="current-password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Mot de passe actuel</label>
+                                            <input type="password" id="current-password" name="current-password" class="input-field">
+                                        </div>
+                                        <div class="md:col-span-2"></div>
+                                        <div>
+                                            <label for="new-password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nouveau mot de passe</label>
+                                            <input type="password" id="new-password" name="new-password" class="input-field">
+                                        </div>
+                                        <div>
+                                            <label for="confirm-password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Confirmer le mot de passe</label>
+                                            <input type="password" id="confirm-password" name="confirm-password" class="input-field">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Submit Button -->
+                                <div class="flex justify-end">
+                                    <button type="submit" class="btn-primary">Enregistrer les modifications</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Settings Section -->
+                    <div id="settings" class="mb-8 hidden">
+                        <h2 class="text-2xl font-bold mb-6">Paramètres</h2>
+                        
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                            <!-- Notification Settings -->
+                            <div class="mb-8">
+                                <h3 class="text-lg font-medium mb-4">Notifications</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-medium">Notifications par email</h4>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">Recevoir des emails pour les nouvelles commandes, messages et avis</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-medium">Notifications SMS</h4>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">Recevoir des SMS pour les nouvelles commandes</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer">
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-medium">Notifications marketing</h4>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">Recevoir des informations sur les promotions et nouveautés</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Privacy Settings -->
+                            <div class="mb-8">
+                                <h3 class="text-lg font-medium mb-4">Confidentialité</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-medium">Profil public</h4>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">Rendre votre profil visible pour les autres utilisateurs</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-medium">Partage de données</h4>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">Autoriser le partage de vos données avec nos partenaires</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer">
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Account Settings -->
+                            <div>
+                                <h3 class="text-lg font-medium mb-4">Compte</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <button class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 font-medium flex items-center">
+                                            <i class="fas fa-trash-alt mr-2"></i> Supprimer mon compte
+                                        </button>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Cette action est irréversible et supprimera toutes vos données.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">StockEasy</h3>
+                    <p class="text-gray-400 mb-4">Plateforme de vente de produits locaux de qualité. Connecter les producteurs locaux aux consommateurs.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Accueil</a></li>
+                        <li><a href="produits.html" class="text-gray-400 hover:text-white transition">Produits</a></li>
+                        <li><a href="vendre.html" class="text-gray-400 hover:text-white transition">Vendre</a></li>
+                        <li><a href="dashboard.html" class="text-gray-400 hover:text-white transition">Mon espace</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Categories -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Catégories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="produits.html?category=beaute" class="text-gray-400 hover:text-white transition">Produits de beauté</a></li>
+                        <li><a href="produits.html?category=alimentation" class="text-gray-400 hover:text-white transition">Alimentation</a></li>
+                        <li><a href="produits.html?category=artisanat" class="text-gray-400 hover:text-white transition">Artisanat</a></li>
+                        <li><a href="produits.html?category=plantes" class="text-gray-400 hover:text-white transition">Plantes & Remèdes</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start space-x-2">
+                            <i class="fas fa-map-marker-alt mt-1"></i>
+                            <span>123 Rue du Commerce, Conakry, Guinée</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-phone"></i>
+                            <span>+224 12 345 6789</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@stockeasy.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">&copy; 2023 StockEasy. Tous droits réservés.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="cgu.html" class="text-gray-400 hover:text-white transition">Conditions générales</a>
+                    <a href="privacy.html" class="text-gray-400 hover:text-white transition">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Tab navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all sidebar navigation links
+            const navLinks = document.querySelectorAll('nav ul li a');
+            
+            // Get all content sections
+            const sections = document.querySelectorAll('#dashboard, #products, #orders, #messages, #profile, #settings');
+            
+            // Show dashboard by default
+            document.getElementById('dashboard').classList.remove('hidden');
+            
+            // Add click event to each navigation link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get the target section id from the href attribute
+                    const targetId = this.getAttribute('href').substring(1);
+                    
+                    // Hide all sections
+                    sections.forEach(section => {
+                        section.classList.add('hidden');
+                    });
+                    
+                    // Show the target section
+                    if (targetId && document.getElementById(targetId)) {
+                        document.getElementById(targetId).classList.remove('hidden');
+                    }
+                    
+                    // Remove active class from all links
+                    navLinks.forEach(link => {
+                        link.classList.remove('bg-primary', 'bg-opacity-10', 'text-primary');
+                        link.classList.add('hover:bg-gray-100', 'dark:hover:bg-gray-700');
+                    });
+                    
+                    // Add active class to clicked link
+                    this.classList.add('bg-primary', 'bg-opacity-10', 'text-primary');
+                    this.classList.remove('hover:bg-gray-100', 'dark:hover:bg-gray-700');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
