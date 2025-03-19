@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vendez vos produits locaux sur StockEasy. Créez facilement votre annonce et touchez des clients intéressés.">
+    <title>Vendre un produit - StockEasy</title>
+    <link href="output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-light dark:bg-dark text-dark dark:text-light min-h-screen flex flex-col">
+    <!-- Header (même que index.html) -->
+    <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <img src="assets/images/logo.svg" alt="StockEasy Logo" class="h-10">
+                    <span class="font-bold text-xl text-primary">StockEasy</span>
+                </div>
+                
+                <!-- Navigation Desktop -->
+                <nav class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Accueil</a>
+                    <a href="produits.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Produits</a>
+                    <a href="vendre.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Vendre</a>
+                    <a href="recherche.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Recherche</a>
+                    <a href="contact.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Contact</a>
+                </nav>
+                
+                <!-- User Actions -->
+                <div class="flex items-center space-x-4">
+                    <button id="darkModeToggle" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    <a href="dashboard.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <button class="md:hidden text-gray-700 dark:text-gray-200" id="mobileMenuButton">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden hidden mt-4 pb-4">
+                <nav class="flex flex-col space-y-3">
+                    <a href="index.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Accueil</a>
+                    <a href="produits.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Produits</a>
+                    <a href="vendre.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Vendre</a>
+                    <a href="recherche.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Recherche</a>
+                    <a href="contact.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="bg-gray-100 dark:bg-gray-800 py-8">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold">Vendre un produit</h1>
+            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mt-2">
+                <a href="index.html" class="hover:text-primary">Accueil</a>
+                <span class="mx-2">/</span>
+                <span>Vendre un produit</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sell Product Form -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
+                    <h2 class="text-2xl font-semibold mb-6">Informations sur votre produit</h2>
+                    
+                    <form id="sellProductForm">
+                        <!-- Product Basic Info -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-medium mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">Informations de base</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="productName" class="block mb-2 font-medium">Nom du produit *</label>
+                                    <input type="text" id="productName" name="productName" class="input-field" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="productCategory" class="block mb-2 font-medium">Catégorie *</label>
+                                    <select id="productCategory" name="productCategory" class="input-field" required>
+                                        <option value="">Sélectionnez une catégorie</option>
+                                        <option value="beaute">Produits de beauté</option>
+                                        <option value="alimentation">Alimentation</option>
+                                        <option value="artisanat">Artisanat</option>
+                                        <option value="plantes">Plantes & Remèdes</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6">
+                                <label for="productDescription" class="block mb-2 font-medium">Description du produit *</label>
+                                <textarea id="productDescription" name="productDescription" rows="5" class="input-field" required></textarea>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Décrivez votre produit en détail : origine, fabrication, utilisation, etc.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Product Images -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-medium mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">Images du produit</h3>
+                            
+                            <div class="mb-4">
+                                <label class="block mb-2 font-medium">Image principale *</label>
+                                <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center">
+                                    <input type="file" id="mainImage" name="mainImage" class="hidden" accept="image/*" required>
+                                    <label for="mainImage" class="cursor-pointer">
+                                        <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 dark:text-gray-500 mb-2"></i>
+                                        <p class="text-gray-500 dark:text-gray-400">Cliquez pour télécharger ou glissez-déposez</p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">PNG, JPG ou JPEG (max. 5 MB)</p>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block mb-2 font-medium">Images supplémentaires (max. 4)</label>
+                                <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center">
+                                    <input type="file" id="additionalImages" name="additionalImages" class="hidden" accept="image/*" multiple>
+                                    <label for="additionalImages" class="cursor-pointer">
+                                        <i class="fas fa-images text-4xl text-gray-400 dark:text-gray-500 mb-2"></i>
+                                        <p class="text-gray-500 dark:text-gray-400">Cliquez pour télécharger ou glissez-déposez</p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">PNG, JPG ou JPEG (max. 5 MB chacune)</p>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pricing & Stock -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-medium mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">Prix et stock</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div>
+                                    <label for="productPrice" class="block mb-2 font-medium">Prix (€) *</label>
+                                    <input type="number" id="productPrice" name="productPrice" min="0" step="0.01" class="input-field" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="productQuantity" class="block mb-2 font-medium">Quantité disponible *</label>
+                                    <input type="number" id="productQuantity" name="productQuantity" min="1" class="input-field" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="productUnit" class="block mb-2 font-medium">Unité</label>
+                                    <select id="productUnit" name="productUnit" class="input-field">
+                                        <option value="piece">Pièce</option>
+                                        <option value="kg">Kilogramme (kg)</option>
+                                        <option value="g">Gramme (g)</option>
+                                        <option value="l">Litre (L)</option>
+                                        <option value="ml">Millilitre (mL)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Location & Shipping -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-medium mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">Localisation et livraison</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="productLocation" class="block mb-2 font-medium">Localisation *</label>
+                                    <select id="productLocation" name="productLocation" class="input-field" required>
+                                        <option value="">Sélectionnez une région</option>
+                                        <option value="conakry">Conakry</option>
+                                        <option value="kindia">Kindia</option>
+                                        <option value="kankan">Kankan</option>
+                                        <option value="labe">Labé</option>
+                                        <option value="mamou">Mamou</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="productCity" class="block mb-2 font-medium">Ville/Village *</label>
+                                    <input type="text" id="productCity" name="productCity" class="input-field" required>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block mb-2 font-medium">Options de livraison</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="shippingOptions[]" value="pickup" class="form-checkbox text-primary h-5 w-5">
+                                        <span class="ml-2">Retrait sur place</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="shippingOptions[]" value="local" class="form-checkbox text-primary h-5 w-5">
+                                        <span class="ml-2">Livraison locale</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="shippingOptions[]" value="national" class="form-checkbox text-primary h-5 w-5">
+                                        <span class="ml-2">Livraison nationale</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Contact Info -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-medium mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">Informations de contact</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="sellerPhone" class="block mb-2 font-medium">Numéro de téléphone *</label>
+                                    <input type="tel" id="sellerPhone" name="sellerPhone" class="input-field" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="sellerEmail" class="block mb-2 font-medium">Email</label>
+                                    <input type="email" id="sellerEmail" name="sellerEmail" class="input-field">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Terms and Submit -->
+                        <div>
+                            <label class="flex items-start mb-6">
+                                <input type="checkbox" name="termsAccepted" class="form-checkbox text-primary h-5 w-5 mt-1" required>
+                                <span class="ml-2">J'accepte les <a href="cgu.html" class="text-primary hover:underline">conditions générales</a> de vente et je certifie que mon produit respecte les normes de qualité et les réglementations en vigueur.</span>
+                            </label>
+                            
+                            <div class="flex justify-end">
+                                <button type="submit" class="btn-primary py-3 px-8 text-lg">Publier mon annonce</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Selling Tips -->
+                <div class="mt-10 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-primary">Conseils pour bien vendre</h3>
+                    <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Utilisez des photos claires et de bonne qualité pour mettre en valeur votre produit.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Rédigez une description détaillée qui mentionne l'origine, la méthode de fabrication et les utilisations possibles.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Fixez un prix compétitif en tenant compte des coûts de production et des prix du marché.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Répondez rapidement aux questions des acheteurs potentiels pour augmenter vos chances de vente.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">StockEasy</h3>
+                    <p class="text-gray-400 mb-4">Plateforme de vente de produits locaux de qualité. Connecter les producteurs locaux aux consommateurs.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Accueil</a></li>
+                        <li><a href="produits.html" class="text-gray-400 hover:text-white transition">Produits</a></li>
+                        <li><a href="vendre.html" class="text-gray-400 hover:text-white transition">Vendre</a></li>
+                        <li><a href="dashboard.html" class="text-gray-400 hover:text-white transition">Mon espace</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Categories -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Catégories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="produits.html?category=beaute" class="text-gray-400 hover:text-white transition">Produits de beauté</a></li>
+                        <li><a href="produits.html?category=alimentation" class="text-gray-400 hover:text-white transition">Alimentation</a></li>
+                        <li><a href="produits.html?category=artisanat" class="text-gray-400 hover:text-white transition">Artisanat</a></li>
+                        <li><a href="produits.html?category=plantes" class="text-gray-400 hover:text-white transition">Plantes & Remèdes</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start space-x-2">
+                            <i class="fas fa-map-marker-alt mt-1"></i>
+                            <span>123 Rue du Commerce, Conakry, Guinée</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-phone"></i>
+                            <span>+224 12 345 6789</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@stockeasy.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">&copy; 2023 StockEasy. Tous droits réservés.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="cgu.html" class="text-gray-400 hover:text-white transition">Conditions générales</a>
+                    <a href="privacy.html" class="text-gray-400 hover:text-white transition">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Form validation and submission
+        const form = document.getElementById('sellProductForm');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic form validation
+            const productName = document.getElementById('productName').value;
+            const productCategory = document.getElementById('productCategory').value;
+            const productDescription = document.getElementById('productDescription').value;
+            const productPrice = document.getElementById('productPrice').value;
+            
+            if (!productName || !productCategory || !productDescription || !productPrice) {
+                showNotification('Veuillez remplir tous les champs obligatoires.', 'error');
+                return;
+            }
+            
+            // File validation
+            const mainImage = document.getElementById('mainImage').files[0];
+            if (!mainImage) {
+                showNotification('Veuillez télécharger une image principale.', 'error');
+                return;
+            }
+            
+            // If all validations pass, show success message
+            showNotification('Votre annonce a été soumise avec succès ! Elle sera publiée après vérification.', 'success');
+            
+            // In a real application, you would submit the form data to a server here
+            // For this example, we'll just reset the form after a delay
+            setTimeout(() => {
+                form.reset();
+            }, 2000);
+        });
+        
+        // File input preview functionality
+        const mainImageInput = document.getElementById('mainImage');
+        mainImageInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.createElement('img');
+                    preview.src = e.target.result;
+                    preview.className = 'mt-4 w-full max-h-64 object-contain';
+                    
+                    const container = mainImageInput.parentElement;
+                    const existingPreview = container.querySelector('img');
+                    
+                    if (existingPreview) {
+                        container.removeChild(existingPreview);
+                    }
+                    
+                    container.appendChild(preview);
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+        
+        // Notification function
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg ${
+                type === 'success' ? 'bg-green-500' : 'bg-red-500'
+            } text-white`;
+            
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'} mr-2"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 5 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

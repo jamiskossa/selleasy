@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez notre sélection de produits locaux de qualité. Filtrez par catégorie, prix et localisation.">
+    <title>Produits - StockEasy</title>
+    <link href="output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-light dark:bg-dark text-dark dark:text-light min-h-screen flex flex-col">
+    <!-- Header (même que index.html) -->
+    <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <img src="assets/images/logo.svg" alt="StockEasy Logo" class="h-10">
+                    <span class="font-bold text-xl text-primary">StockEasy</span>
+                </div>
+                
+                <!-- Navigation Desktop -->
+                <nav class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Accueil</a>
+                    <a href="produits.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Produits</a>
+                    <a href="vendre.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Vendre</a>
+                    <a href="recherche.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Recherche</a>
+                    <a href="contact.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Contact</a>
+                </nav>
+                
+                <!-- User Actions -->
+                <div class="flex items-center space-x-4">
+                    <button id="darkModeToggle" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    <a href="dashboard.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <button class="md:hidden text-gray-700 dark:text-gray-200" id="mobileMenuButton">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden hidden mt-4 pb-4">
+                <nav class="flex flex-col space-y-3">
+                    <a href="index.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Accueil</a>
+                    <a href="produits.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Produits</a>
+                    <a href="vendre.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Vendre</a>
+                    <a href="recherche.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Recherche</a>
+                    <a href="contact.html" class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="bg-gray-100 dark:bg-gray-800 py-8">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold">Nos Produits</h1>
+            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mt-2">
+                <a href="index.html" class="hover:text-primary">Accueil</a>
+                <span class="mx-2">/</span>
+                <span>Produits</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section with Filters -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Filters Sidebar -->
+                <div class="lg:w-1/4">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                        <h2 class="text-xl font-semibold mb-4">Filtres</h2>
+                        
+                        <!-- Categories Filter -->
+                        <div class="mb-6">
+                            <h3 class="font-medium mb-3">Catégories</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-primary h-5 w-5">
+                                    <span class="ml-2">Produits de beauté</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-primary h-5 w-5">
+                                    <span class="ml-2">Alimentation</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-primary h-5 w-5">
+                                    <span class="ml-2">Artisanat</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-primary h-5 w-5">
+                                    <span class="ml-2">Plantes & Remèdes</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Price Range Filter -->
+                        <div class="mb-6">
+                            <h3 class="font-medium mb-3">Prix</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="price" class="form-radio text-primary h-5 w-5">
+                                    <span class="ml-2">Moins de 10€</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="price" class="form-radio text-primary h-5 w-5">
+                                    <span class="ml-2">10€ - 20€</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="price" class="form-radio text-primary h-5 w-5">
+                                    <span class="ml-2">20€ - 50€</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="price" class="form-radio text-primary h-5 w-5">
+                                    <span class="ml-2">Plus de 50€</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Location Filter -->
+                        <div class="mb-6">
+                            <h3 class="font-medium mb-3">Localisation</h3>
+                            <select class="input-field">
+                                <option value="">Toutes les régions</option>
+                                <option value="conakry">Conakry</option>
+                                <option value="kindia">Kindia</option>
+                                <option value="kankan">Kankan</option>
+                                <option value="labe">Labé</option>
+                                <option value="mamou">Mamou</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Apply Filters Button -->
+                        <button class="btn-primary w-full">Appliquer les filtres</button>
+                    </div>
+                </div>
+                
+                <!-- Products Grid -->
+                <div class="lg:w-3/4">
+                    <!-- Sort Options -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 sm:mb-0">Affichage de <span class="font-semibold">24</span> produits</p>
+                        <div class="flex items-center">
+                            <span class="mr-2 text-gray-600 dark:text-gray-300">Trier par:</span>
+                            <select class="input-field py-1 px-2">
+                                <option value="popularity">Popularité</option>
+                                <option value="price-low">Prix: croissant</option>
+                                <option value="price-high">Prix: décroissant</option>
+                                <option value="newest">Nouveautés</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Products Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Product Cards (12 produits similaires à ceux de la page d'accueil) -->
+                        <!-- Répétez le modèle de carte produit pour chaque produit -->
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="flex justify-center mt-10">
+                        <nav class="flex items-center space-x-2">
+                            <a href="#" class="px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">Précédent</a>
+                            <a href="#" class="px-3 py-1 rounded-md bg-primary text-white">1</a>
+                            <a href="#" class="px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">2</a>
+                            <a href="#" class="px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">3</a>
+                            <span class="px-3 py-1">...</span>
+                            <a href="#" class="px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">10</a>
+                            <a href="#" class="px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">Suivant</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">StockEasy</h3>
+                    <p class="text-gray-400 mb-4">Plateforme de vente de produits locaux de qualité. Connecter les producteurs locaux aux consommateurs.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Accueil</a></li>
+                        <li><a href="produits.html" class="text-gray-400 hover:text-white transition">Produits</a></li>
+                        <li><a href="vendre.html" class="text-gray-400 hover:text-white transition">Vendre</a></li>
+                        <li><a href="dashboard.html" class="text-gray-400 hover:text-white transition">Mon espace</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Categories -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Catégories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="produits.html?category=beaute" class="text-gray-400 hover:text-white transition">Produits de beauté</a></li>
+                        <li><a href="produits.html?category=alimentation" class="text-gray-400 hover:text-white transition">Alimentation</a></li>
+                        <li><a href="produits.html?category=artisanat" class="text-gray-400 hover:text-white transition">Artisanat</a></li>
+                        <li><a href="produits.html?category=plantes" class="text-gray-400 hover:text-white transition">Plantes & Remèdes</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start space-x-2">
+                            <i class="fas fa-map-marker-alt mt-1"></i>
+                            <span>123 Rue du Commerce, Conakry, Guinée</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-phone"></i>
+                            <span>+224 12 345 6789</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@stockeasy.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">&copy; 2023 StockEasy. Tous droits réservés.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="cgu.html" class="text-gray-400 hover:text-white transition">Conditions générales</a>
+                    <a href="privacy.html" class="text-gray-400 hover:text-white transition">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
